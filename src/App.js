@@ -2,13 +2,12 @@ import React from "react";
 import './App.css';
 import { Persons } from './components/Persons';
 
-
 class App extends React.Component {
  
         state = {
             persons : [],
             person: '',
-            showpersons: false,
+            showpersons: true,
         };
     
    
@@ -52,15 +51,22 @@ class App extends React.Component {
             person = <Persons personDelete={this.handleDeletePersons} personChange={this.handleNameChange} persons={persons}/>
         }
         return ( 
-            <div style={{textAlign: "center"}}>
-                <h1> مدیریت کننده اشخاص </h1>
-                <h2>تعداد اشخاص {persons.length}</h2>
+            <div className="rtl text-center">
+            <div className="alert alert-info">
+            <h1> مدیریت کننده اشخاص </h1>
+            </div>
+                <h5 className="alert alert-light">تعداد اشخاص <span className="badge badge-pill badge-success">{persons.length}</span></h5>
                 <hr/>
-                <div>
-                <input type="text" placeholder="ساخت شخص جدید" style={{direction : "rtl"}}/>
+                <div className="m-2 p-2">
+                <form className="form-inline justify-content-center">
+                <div className="input-grout w-25"><input  type="text" placeholder="ساخت شخص جدید" style={{direction : "rtl"}} onChange={this.setPerson} value={this.state.person}/>
+                <button className={"btn btn-sm btn-success "} onClick={this.handleNewPersons}>add
+                </button>
+                </div>
+                </form>
                 </div>
                 {person}            
-                <button onClick={this.handleShowPersons}>نمایش اشخاص</button>
+                <button className={"btn btn-sm btn-success "} onClick={this.handleShowPersons}>نمایش اشخاص</button>
             </div>
         );
     }
